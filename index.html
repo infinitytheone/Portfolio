@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gabriel Quiroga — Projets & Stratégie Digitale</title>
+  
+  <!-- Polices éditoriales sobres -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #fcfbf9;
+      --surface: #ffffff;
+      --text-main: #141413;
+      --text-muted: #6f6e69;
+      --border: #e8e6e1;
+      --border-dark: #141413;
+      --accent: #2c2b29;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .font-serif {
+      font-family: 'Instrument Serif', Georgia, serif;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* En-tête */
+    header {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(252, 251, 249, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 50;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .logo span {
+      color: var(--text-muted);
+    }
+
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--text-main);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 6rem 0 4rem;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 3rem;
+      align-items: end;
+    }
+
+    .hero-tag {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 6vw, 4.75rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+    }
+
+    h1 em {
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .hero-lead {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 32rem;
+      line-height: 1.5;
+    }
+
+    .hero-meta {
+      border-left: 1px solid var(--border);
+      padding-left: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .meta-item span {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .meta-item p {
+      font-size: 0.95rem;
+      font-weight: 400;
+      margin-top: 0.2rem;
+    }
+
+    /* Ruban de compétences */
+    .strip {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Section Projets */
+    .section-title {
+      padding: 4rem 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .section-title h2 {
+      font-size: 2.25rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+    }
+
+    /* Grille de projets / Livrables */
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3.5rem;
+      padding-bottom: 6rem;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+
+    .project-card:hover {
+      border-color: var(--text-main);
+    }
+
+    .project-preview {
+      background: #f4f3ef;
+      border-right: 1px solid var(--border);
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      min-height: 380px;
+    }
+
+    /* Mockup épuré de document / livrable */
+    .mockup-sheet {
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    }
+
+    .mockup-sheet header {
+      position: static;
+      background: transparent;
+      padding: 0 0 1rem;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-muted);
+    }
+
+    .mockup-kpi {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px dashed var(--border);
+    }
+
+    .kpi-num {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 1.75rem;
+      line-height: 1;
+      color: var(--text-main);
+    }
+
+    .kpi-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .project-content {
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-num {
+      font-size: 0.8rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .project-content h3 {
+      font-size: 1.75rem;
+      font-weight: 400;
+      margin: 0.5rem 0 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.55;
+    }
+
+    .project-deliverables {
+      margin-bottom: 2rem;
+    }
+
+    .project-deliverables span {
+      display: inline-block;
+      font-size: 0.75rem;
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.6rem;
+      margin: 0.2rem 0.2rem 0 0;
+      background: var(--bg);
+    }
+
+    .project-link {
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--text-main);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--text-main);
+      padding-bottom: 0.2rem;
+      width: fit-content;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--text-main);
+      text-decoration: none;
+      margin-left: 1.5rem;
+    }
+
+    @media (max-width: 820px) {
+      .hero { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-meta { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 1.5rem; }
+      .project-card { grid-template-columns: 1fr; }
+      .project-preview { min-height: auto; border-right: none; border-bottom: 1px solid var(--border); }
+      .strip { flex-direction: column; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container nav-inner">
+      <a href="/" class="logo">GQ<span>.</span></a>
+      <nav>
+        <a href="#projets" class="active">Projets & Livrables</a>
+        <a href="#parcours">Parcours</a>
+        <a href="mailto:gabriel.quiroga07@icloud.com">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section Éditoriale -->
+  <main class="container">
+    <section class="hero">
+      <div>
+        <p class="hero-tag">Stratégie digitale · Analyse de données · Gestion de projet</p>
+        <h1 class="font-serif">Gabriel<br><em>Quiroga</em></h1>
+        <p class="hero-lead">
+          Employé de commerce CFC combinant rigueur administrative publique, sensibilité éditoriale et stratégie de contenu marketing.
+        </p>
+      </div>
+
+      <div class="hero-meta">
+        <div class="meta-item">
+          <span>Période</span>
+          <p>2023 — 2026</p>
+        </div>
+        <div class="meta-item">
+          <span>Ancrage</span>
+          <p>Administration publique & Projets EPCL</p>
+        </div>
+        <div class="meta-item">
+          <span>Spécialités</span>
+          <p>Social Media, Copywriting, Données Excel, Workflows IA</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ruban de positionnement -->
+    <div class="strip">
+      <span>Précision d'exécution</span>
+      <span>•</span>
+      <span>Culture éditoriale & visuelle</span>
+      <span>•</span>
+      <span>Orientation résultats mesurables</span>
+    </div>
+
+    <!-- Section Travaux & Livrables réels -->
+    <section id="projets">
+      <div class="section-title">
+        <h2 class="font-serif">Sélection de projets & livrables</h2>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Travaux documentés</span>
+      </div>
+
+      <div class="project-grid">
+
+        <!-- 01 : FocusWatch -->
+        <article class="project-card">
+          <div class="project-preview">
+            <div class="mockup-sheet">
+              <header>
+                <strong>PLAN DE CAMPAGNE DIGITALE</strong>
+                <span>Plateforme TikTok</span>
+              </header>
+              <p style="font-size: 0.8rem; margin: 1rem 0; color: #444;">
+                Cible : Étudiants 18-24 ans (Persona : Clara). Déploiement d'une stratégie de conversion produit axée sur la productivité.
+              </p>
+              <div class="mockup-kpi">
+                <div>
+                  <div class="kpi-num">5'000</div>
+                  <div class="kpi-label">Abonnés visés</div>
+                </div>
+                <div>
+                  <div class="kpi-num">8.2%</div>
+                  <div class="kpi-label">Taux d'engagement</div>
+                </div>
+                <div>
+                  <div class="kpi-num">5</div>
+                  <div class="kpi-label">KPI définis</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <div>
+              <span class="project-num">01 / MARKETING & STRATÉGIE DIGITALE</span>
+              <h3 class="font-serif">FocusWatch — Lancement de marque</h3>
+              <p class="project-desc">
+                Conception d'une campagne de communication digitale de bout en bout : analyse SWOT, définition des objectifs SMART, persona cible, calendrier éditorial et structuration du mix marketing (4P).
+              </p>
+              <div class="project-deliverables">
+                <span>Étude de marché</span>
+                <span>Calendrier éditorial</span>
+                <span>Objectifs SMART</span>
+                <span>Storytelling</span>
+              </div>
+            </div>
+            <a href="mailto:gabriel.quiroga07@icloud.com?subject=Dossier FocusWatch" class="project-link">
+              Consulter la documentation complète ↗
+            </a>
+          </div>
+        </article>
+
+        <!-- 02 : Eat & Go -->
+        <article class="project-card">
+          <div class="project-preview">
+            <div class="mockup-sheet">
+              <header>
+                <strong>IDENTITÉ VISUELLE & SUPPORTS</strong>
+                <span>Food Truck EPCL</span>
+              </header>
+              <div style="background: #1a1a1a; color: #fff; padding: 1.25rem; margin: 1rem 0; border-radius: 2px;">
+                <p style="font-size: 0.75rem; letter-spacing: 0.1em; color: #d4a373;">EAT & GO</p>
+                <p style="font-size: 0.85rem; font-family: 'Instrument Serif', serif; margin-top: 0.25rem;">
+                  « Des produits frais à prix accessible pour les étudiants »
+                </p>
+              </div>
+              <p style="font-size: 0.75rem; color: var(--text-muted);">
+                Livrables : Menus complets, flyers promotionnels à QR code, carte de fidélité à tampons.
+              </p>
+            </div>
+          </div>
+          <div class="project-content">
+            <div>
+              <span class="project-num">02 / BRANDING & ÉTUDE DE TERRAIN</span>
+              <h3 class="font-serif">Eat & Go — Identité de marque</h3>
+              <p class="project-desc">
+                Création intégrale d'un concept de restauration éphémère : étude des flux étudiants, contraintes HACCP et réglementaires, positionnement prix et création de l'ensemble de l'univers visuel et print.
+              </p>
+              <div class="project-deliverables">
+                <span>Branding complet</span>
+                <span>Supports de vente print</span>
+                <span>Réglementation HACCP</span>
+                <span>Stratégie de fidélisation</span>
+              </div>
+            </div>
+            <a href="mailto:gabriel.quiroga07@icloud.com?subject=Dossier Eat and Go" class="project-link">
+              Consulter la documentation complète ↗
+            </a>
+          </div>
+        </article>
+
+        <!-- 03 : TransVin -->
+        <article class="project-card">
+          <div class="project-preview">
+            <div class="mockup-sheet">
+              <header>
+                <strong>AUDIT EXCEL & CONFORMITÉ</strong>
+                <span>TransVin Sàrl</span>
+              </header>
+              <div style="font-family: monospace; font-size: 0.75rem; margin: 1rem 0; color: #333;">
+                <div>> CA Total analysé : CHF 36'713.-</div>
+                <div>> Volume : 42'115 bouteilles</div>
+                <div>> Clauses corrigées (CO) : 6 points litigieux</div>
+              </div>
+              <p style="font-size: 0.75rem; color: var(--text-muted); border-top: 1px solid #f0f0f0; padding-top: 0.5rem;">
+                Mise en place de tableaux croisés dynamiques et révision juridique d'un contrat de travail.
+              </p>
+            </div>
+          </div>
+          <div class="project-content">
+            <div>
+              <span class="project-num">03 / ANALYSE DE DONNÉES & DROIT</span>
+              <h3 class="font-serif">TransVin — Traitement de données & Audit</h3>
+              <p class="project-desc">
+                Exploitation chiffrée d'une structure de ventes pour dégager les marchands les plus rentables, doublée d'un audit de droit suisse avec détection et correction argumentée de 6 clauses non conformes.
+              </p>
+              <div class="project-deliverables">
+                <span>Tableaux croisés dynamiques</span>
+                <span>Droit du travail suisse</span>
+                <span>Analyse de rentabilité</span>
+              </div>
+            </div>
+            <a href="mailto:gabriel.quiroga07@icloud.com?subject=Dossier TransVin" class="project-link">
+              Consulter la documentation complète ↗
+            </a>
+          </div>
+        </article>
+
+        <!-- 04 : AutoDirect -->
+        <article class="project-card">
+          <div class="project-preview">
+            <div class="mockup-sheet">
+              <header>
+                <strong>BUDGET PRÉVISIONNEL & ÉVÉNEMENTIEL</strong>
+                <span>Journée Portes Ouvertes</span>
+              </header>
+              <div class="mockup-kpi" style="border-top: none; margin-top: 0.5rem; padding-top: 0;">
+                <div>
+                  <div class="kpi-num">420</div>
+                  <div class="kpi-label">Visiteurs gérés</div>
+                </div>
+                <div>
+                  <div class="kpi-num">13.7k</div>
+                  <div class="kpi-label">Budget prévisionnel (CHF)</div>
+                </div>
+                <div>
+                  <div class="kpi-num">0%</div>
+                  <div class="kpi-label">Dépassement de coûts</div>
+                </div>
+              </div>
+              <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem;">
+                Analyse des devis prestataires, compte de résultat et rédaction de réclamations fournisseurs.
+              </p>
+            </div>
+          </div>
+          <div class="project-content">
+            <div>
+              <span class="project-num">04 / GESTION BUDGÉTAIRE & RELATION FOURNISSEURS</span>
+              <h3 class="font-serif">AutoDirect — Pilotage opérationnel</h3>
+              <p class="project-desc">
+                Tenue rigoureuse du budget d'une concession pour un événement public majeur : calcul des écarts réels vs prévus, négociation et correspondances formelles de réclamation suite à des litiges de livraison.
+              </p>
+              <div class="project-deliverables">
+                <span>Comptabilité analytique</span>
+                <span>Gestion des écarts</span>
+                <span>Correspondance commerciale</span>
+              </div>
+            </div>
+            <a href="mailto:gabriel.quiroga07@icloud.com?subject=Dossier AutoDirect" class="project-link">
+              Consulter la documentation complète ↗
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Footer Épuré -->
+    <footer>
+      <div>
+        <p><strong>Gabriel Quiroga</strong> · CFC Employé de commerce</p>
+        <p style="font-size: 0.8rem; margin-top: 0.2rem;">Vallée de Joux & Canton de Vaud</p>
+      </div>
+      <div>
+        <a href="https://www.linkedin.com/in/gabriel-quiroga-68b4722bb/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="mailto:gabriel.quiroga07@icloud.com">gabriel.quiroga07@icloud.com</a>
+      </div>
+    </footer>
+  </main>
+
+</body>
+</html>
